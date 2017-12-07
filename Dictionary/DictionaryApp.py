@@ -27,4 +27,10 @@ def wordDefinition(word):
 
 
 inputString = input("Please enter a word: ")
-print(wordDefinition(inputString))
+definitions = wordDefinition(inputString)
+
+if type(definitions) == list:
+    for index in definitions:
+        print(index)
+else:
+    print(definitions)
