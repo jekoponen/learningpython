@@ -7,6 +7,8 @@ def wordDefinition(word):
     word = word.lower()
     if word in data:
         return data[word]
+    elif word.title() in data:
+        return data[word.title()]
     elif len(get_close_matches(word,data.keys(), cutoff = 0.75)) > 0:
         match = get_close_matches(word,data.keys())[0]
         print("Did you mean %s instead?" % match)
@@ -19,7 +21,7 @@ def wordDefinition(word):
                 return data[match]
             elif answer == "N":
                 stay = "FALSE"
-                return "Too bad :("
+                return "Given word %s is not in dictionary" % inputString
             else:
                 print("Unknown input")
     else:
