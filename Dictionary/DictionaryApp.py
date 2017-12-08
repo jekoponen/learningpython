@@ -1,12 +1,15 @@
 import json
+import sys
 from difflib import get_close_matches
 
-data = json.load(open("data.json"))
+data = json.load(open(sys.path[0] + "\data.json"))
 
 def wordDefinition(word):
     word = word.lower()
     if word in data:
         return data[word]
+    elif word.upper() in data:
+        return data[word.upper()]
     elif word.title() in data:
         return data[word.title()]
     elif len(get_close_matches(word,data.keys(), cutoff = 0.75)) > 0:
