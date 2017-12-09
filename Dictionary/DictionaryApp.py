@@ -6,18 +6,18 @@ data = json.load(open(sys.path[0] + "\data.json"))
 
 def wordDefinition(word):
     word = word.lower()
-    if word in data:
+    if word in data:        #seek in lowcase, most of the words
         return data[word]
-    elif word.upper() in data:
+    elif word.upper() in data:  #seek in uppercas, some appreveviation like USA,NATO
         return data[word.upper()]
-    elif word.title() in data:
+    elif word.title() in data:      #seek as Title, names, cities, countries etc.
         return data[word.title()]
-    elif len(get_close_matches(word,data.keys(), cutoff = 0.75)) > 0:
-        match = get_close_matches(word,data.keys())[0]
+    elif len(get_close_matches(word,data.keys(), cutoff = 0.75)) > 0:    #search close values for input
+        match = get_close_matches(word,data.keys())[0]     #select the closet one
         print("Did you mean %s instead?" % match)
         stay = "TRUE"
         print("Do you want to continue with %s" % match)
-        while stay == "TRUE":
+        while stay == "TRUE":                  #ask while user gives accepted answer     
             answer = input("Give Y to continue, N to exit : ")
             if answer == "Y":
                 stay = "FALSE"
